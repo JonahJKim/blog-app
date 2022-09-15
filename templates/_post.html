@@ -1,0 +1,5 @@
+{% set time_passed = timeago.format(datetime.now(), post.timestamp) %}
+<p><img src="{{ post.user.avatar(36) }}">
+    <a class="post" href="{{ url_for('profile', username=post.user.username) }}">{{post.user.username}}</a>
+    {{ time_passed }}:
+    {{post.body}}</p>

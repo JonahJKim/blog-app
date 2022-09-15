@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="" method="post" novalidate>
+    {{ usersearchform.csrf_token }}
+    <p>
+        {{ usersearchform.username.label }}<br>
+        {{ usersearchform.username( )}}<br>
+        {% for error in usersearchform.username.errors %}
+            <span style="color: red">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ usersearchform.submit() }}
+    </p>
+</form>
+<form action="" method="post" novalidate>
+    {{ form.csrf_token }}
+    <p>
+        {{ form.post.label }}<br>
+        {{ form.post(cols=32, rows=4) }}
+        {% for error in form.post.errors %}
+            <span style="color: red">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.submit() }}
+    </p>
+</form>
+
+{% for post in posts %}
+{% include '_post.html' %}
+{% endfor %}
+
+{% if prev_url %}
+    <a href="{{ prev_url }}">Newer Posts</a>
+{% endif %}
+{% if next_url %}
+    <a href="{{ next_url }}">Older Posts</a>
+{% endif %}
+
+{% endblock %}
